@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "badWomenFrontend"
+    }
+  },
+  "defaultProject": "badWomenFrontend",
+  "cli": {
+    "analytics": "78c6df24-26c9-469b-ba30-f12b12da079a"
+  }
 }

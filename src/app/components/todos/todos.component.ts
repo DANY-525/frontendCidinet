@@ -10,6 +10,7 @@ import{TodoService} from '../../services/todo.service'
 })
 export class TodosComponent implements OnInit {
   todos:Todo[];
+  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
   constructor(private todoService:TodoService) { 
     
   }
