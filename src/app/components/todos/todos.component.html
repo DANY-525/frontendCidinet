@@ -8,13 +8,3 @@
     <li>{{todo.title}}</li>
 </app-todo-item>
 
-<mat-selection-list #shoes [multiple]="false">
-    <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe">
-      {{shoe}}
-      <img matListAvatar src="..." alt="...">
-    </mat-list-option>
-  </mat-selection-list>
-  
-  <p>
-    Option selected: {{shoes.selectedOptions.selected[0]?.value}}
-  </p>
