@@ -7,9 +7,14 @@ import { TodosComponent } from './components/todos/todos.component';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
+import { RegistroEmpleadosComponent } from './components/registro-empleados/registro-empleados.component';
 import {FormsModule} from '@angular/forms';
 //Angular Material Components
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -39,21 +44,28 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { GrillaComponent } from './components/grilla/grilla.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     TodosComponent,
     TodoItemComponent,
     HeaderComponent,
-    AddTodoComponent
+    AddTodoComponent,
+    GrillaComponent,
+    RegistroEmpleadosComponent
   ],
   imports: [
+    MatNativeDateModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    
+    NgbModule,
     MatInputModule,
     MatAutocompleteModule,
     MatDatepickerModule,
@@ -81,9 +93,14 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+ 
   ],
-  providers: [],
+  providers: [
+    MatDatepickerModule,
+    MatNativeDateModule  
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

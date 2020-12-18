@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 
+import { Routes, RouterModule } from '@angular/router';
 import {TodosComponent} from './components/todos/todos.component';
+import {GrillaComponent} from './components/grilla/grilla.component';
+import {RegistroEmpleadosComponent} from './components/registro-empleados/registro-empleados.component';
+
 
 const routes: Routes = [
-    {path:'',component:TodosComponent}
+    {path:'todos',component:TodosComponent},
+    {path:'grilla',component:GrillaComponent},
+    {path:'registro',component:RegistroEmpleadosComponent},
+
 ];
 
 @NgModule({
