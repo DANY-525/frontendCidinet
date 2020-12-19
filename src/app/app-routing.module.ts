@@ -8,7 +8,7 @@ import {RegistroEmpleadosComponent} from './components/registro-empleados/regist
 
 const routes: Routes = [
     {path:'todos',component:TodosComponent},
-    {path:'grilla',component:GrillaComponent},
+    {path:'',component:GrillaComponent},
     {path:'registro',component:RegistroEmpleadosComponent},
 
 ];

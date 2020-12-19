@@ -73,8 +73,25 @@
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
-      
-      <button  type="submit" mat-button color="primary">Primary</button>
+
+      <mat-form-field appearance="fill">
+        <mat-label>area</mat-label>
+        <mat-select name="tipoId" ngModel>
+          <mat-option *ngFor="let tipo of areas" [value]="tipo.value">
+            {{tipo.nombre}}
+          </mat-option>
+        </mat-select>
+ 
+      </mat-form-field>
+      <button type="submit" mat-button color="primary">Primary</button>
+
+
 
 </form>
+
+<div *ngIf="spining"><mat-spinner  ></mat-spinner></div>
+
+<h1 *ngIf="show">por favor llene los datos correspondientes</h1>
+
+  
 </div>

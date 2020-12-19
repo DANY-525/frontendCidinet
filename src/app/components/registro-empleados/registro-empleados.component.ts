@@ -15,12 +15,39 @@ interface Identificacion {
 }
 
 
+interface Area {
+  value: string;
+  nombre: string;
+}
+
+
+let show:boolean;
+let spining:boolean;
+
+
+
 @Component({
   selector: 'app-registro-empleados',
   templateUrl: './registro-empleados.component.html',
   styleUrls: ['./registro-empleados.component.css']
 })
 export class RegistroEmpleadosComponent implements OnInit {
+
+ show =false;
+ spining=false;
+  
+  
+ areas: Area[] = [
+  {value: '0', nombre: 'Administracion'},
+  {value: '1', nombre: 'Financiera'},
+  {value: '2', nombre: 'Compras'},
+  {value: '3', nombre: 'Infraestructura'},
+  {value: '3', nombre: 'Operacion'}
+
+
+];
+
+
 
 
   paises: Pais[] = [
@@ -34,19 +61,14 @@ export class RegistroEmpleadosComponent implements OnInit {
     {value: '2', nombre: ' pasaporte'},
     {value: '2', nombre: ' permiso especiao'},
   ];
-  
   primerApellido:string;
   segundoApellido:string;
   primerNombre:string;
   segundoNombre:string;
   identificacion:string;
-
-  
   correo:string;
   model: NgbDateStruct;
   date: {year: number, month: number};
-
-
   constructor(private calendar: NgbCalendar) { 
 
 
@@ -57,17 +79,68 @@ export class RegistroEmpleadosComponent implements OnInit {
   }
 
   beforeSend(data){
+    let result = false;
+    if(data.fechaIngreso  == undefined){
 
+      result = true;
 
-    return data;
+    }
+
+    if(data.identificacion  == ""){
+
+      result = true;
+
+    }
+
+    if(data.pais  == ""){
+
+      result = true;
+
+    }
+
+    if(data.primerApellido  == ""){
+
+      result = true;
+
+    }
+    if(data.segundoApellido  == ""){
+
+      result = true;
+
+    }
+    if(data.segundoNombre  == ""){
+
+      result = true;
+
+    }
+    if(data.tipoId  == ""){
+
+      result = true;
+
+    }
+    
+    return result;
+
   }
 
 
   onClickSubmit(data):void{
 
+    this.show =false;
+
+    this.spining = true;
+
      let  result =  this.beforeSend(data);
 
-     console.log(result);
+
+     if(result == true){
+
+      this.show = true;
+
+     }
+
+
+     this.spining = false;
       
 
     
