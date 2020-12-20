@@ -44,7 +44,7 @@ export class RegistroEmpleadosComponent implements OnInit {
     { value: '1', nombre: 'Financiera' },
     { value: '2', nombre: 'Compras' },
     { value: '3', nombre: 'Infraestructura' },
-    { value: '3', nombre: 'Operacion' }
+    { value: '4', nombre: 'Operacion' }
   ];
   paises: Pais[] = [
     { value: '0', nombre: 'colombia' },
@@ -55,7 +55,7 @@ export class RegistroEmpleadosComponent implements OnInit {
     { value: '0', nombre: 'cedula' },
     { value: '1', nombre: 'cedula extrangeria' },
     { value: '2', nombre: ' pasaporte' },
-    { value: '2', nombre: ' permiso especiao' },
+    { value: '3', nombre: ' permiso especiao' },
   ];
   primerApellido: string;
   segundoApellido: string;

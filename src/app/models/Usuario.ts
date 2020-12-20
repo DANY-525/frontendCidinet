@@ -11,6 +11,7 @@ export class Usuario {
     fechaIngreso:string;
     idArea:number;
     fechaRegistro:string;
+    correo:string;
     estado:number;
     
 
