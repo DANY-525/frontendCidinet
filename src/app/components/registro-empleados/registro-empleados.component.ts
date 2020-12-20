@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbCalendar, NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+
 import { from } from 'rxjs';
 import { Usuario } from 'src/app/models/Usuario';
 import { UserService } from 'src/app/services/user.service';
@@ -19,6 +20,8 @@ interface Area {
 }
 let show: boolean;
 let spining: boolean;
+
+let camposMalos; 
 
 let col = "@cidenet.com.co";
 let usa = "@cidenet.com.us";
@@ -109,27 +112,45 @@ export class RegistroEmpleadosComponent implements OnInit {
     return primerNombre + "" + primerApellido + "" + dominio;
   }
 
-
-
-
+  validateForm(data: any) {
+    let retornoCampos = "";
+    let regexaz = new RegExp("^[a-zA-Z]{0,20}$");
+    let regexaz50 = new RegExp("^[a-zA-Z]{0,50}$");
+    let resPrimerN = (regexaz.test(data.primerNombre) == true) ? "" : "revisar primer nombre max 20 caracteres</br>";
+    let resSegundoN = (regexaz.test(data.segundoNombre) == true) ? "" : "revisar primer nombre max 20 caracteres</br>";
+    let resPrimera = (regexaz.test(data.primerApellido) == true) ? "" : "revisar primer nombre max 20 caracteres</br>";
+    let resSegA = (regexaz50.test(data.segundoApellido) == true) ? "" : "revisar primer nombre max 50 caracteres</br>";
+    return resPrimerN + resSegundoN + resPrimera + resSegA;
+  }
   onClickSubmit(data): void {
     console.log(data);
     this.show = false;
     this.spining = true;
     // this.router.navigate(['/']);
-    let fechaRegistroCalendar = this.getTimesLocal(data.fechaIngreso);
-    data.fechaIngreso = fechaRegistroCalendar;
-    data.estado = 1;
-    let fechaRegistro = new Date();
-    let fechaActual = this.getTimesLocal(fechaRegistro);
-    data.fechaRegistro = fechaActual;
-    let email = this.buildEmail(data.primerNombre, data.primerApellido, data.idPais);
-    data.correo = email;
-    // console.log(fechaRegistro);
-    this.userService.newUser(data).subscribe(res => {
-      console.log(res);
-      // this.router.navigate(['/']);
-    });
+    camposMalos = this.validateForm(data);
+    if(camposMalos ==""){
+      let fechaRegistroCalendar = this.getTimesLocal(data.fechaIngreso);
+      data.fechaIngreso = fechaRegistroCalendar;
+      data.estado = 1;
+      let fechaRegistro = new Date();
+      let fechaActual = this.getTimesLocal(fechaRegistro);
+      data.fechaRegistro = fechaActual;
+      let email = this.buildEmail(data.primerNombre, data.primerApellido, data.idPais);
+      data.correo = email;
+      // console.log(fechaRegistro);
+      this.userService.newUser(data).subscribe(res => {
+
+        this.spining = false;
+        this.show = false;
+        
+        this.router.navigate(['/']);
+      });
+    }else{
+
+      this.show = true;
+      this.spining = false;
+
+    }
 
   }
 
