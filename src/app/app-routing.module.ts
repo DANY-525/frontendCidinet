@@ -10,6 +10,7 @@ const routes: Routes = [
     {path:'todos',component:TodosComponent},
     {path:'',component:GrillaComponent},
     {path:'registro',component:RegistroEmpleadosComponent},
+    {path:'registro/:id',component:RegistroEmpleadosComponent},
 
 ];
 

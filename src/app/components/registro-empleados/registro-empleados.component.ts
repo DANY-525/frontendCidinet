@@ -1,11 +1,9 @@
-import { Component, OnInit,EventEmitter,Output } from '@angular/core';
-import {NgbCalendar, NgbDate, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgbCalendar, NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { from } from 'rxjs';
+import { Usuario } from 'src/app/models/Usuario';
 import { UserService } from 'src/app/services/user.service';
-
-
-
-
 interface Pais {
   value: string;
   nombre: string;
@@ -15,19 +13,15 @@ interface Identificacion {
   value: string;
   nombre: string;
 }
-
-
 interface Area {
   value: string;
   nombre: string;
 }
+let show: boolean;
+let spining: boolean;
 
-
-let show:boolean;
-let spining:boolean;
-
-
-
+let col = "@cidenet.com.co";
+let usa = "@cidenet.com.us";
 @Component({
   selector: 'app-registro-empleados',
   templateUrl: './registro-empleados.component.html',
@@ -35,113 +29,108 @@ let spining:boolean;
 })
 export class RegistroEmpleadosComponent implements OnInit {
   @Output() newUser: EventEmitter<any> = new EventEmitter();
-
-  
-
- show =false;
- spining=false;
-  
-  
- areas: Area[] = [
-  {value: '0', nombre: 'Administracion'},
-  {value: '1', nombre: 'Financiera'},
-  {value: '2', nombre: 'Compras'},
-  {value: '3', nombre: 'Infraestructura'},
-  {value: '3', nombre: 'Operacion'}
-
-
-];
+  id: string;
+  show = false;
+  spining = false;
+  usuario;
 
 
 
-
+  areas: Area[] = [
+    { value: '0', nombre: 'Administracion' },
+    { value: '1', nombre: 'Financiera' },
+    { value: '2', nombre: 'Compras' },
+    { value: '3', nombre: 'Infraestructura' },
+    { value: '3', nombre: 'Operacion' }
+  ];
   paises: Pais[] = [
-    {value: '0', nombre: 'colombia'},
-    {value: '1', nombre: 'usa'}
+    { value: '0', nombre: 'colombia' },
+    { value: '1', nombre: 'usa' }
   ];
 
   tipoId: Identificacion[] = [
-    {value: '0', nombre: 'cedula'},
-    {value: '1', nombre: 'cedula extrangeria'},
-    {value: '2', nombre: ' pasaporte'},
-    {value: '2', nombre: ' permiso especiao'},
+    { value: '0', nombre: 'cedula' },
+    { value: '1', nombre: 'cedula extrangeria' },
+    { value: '2', nombre: ' pasaporte' },
+    { value: '2', nombre: ' permiso especiao' },
   ];
-  primerApellido:string;
-  segundoApellido:string;
-  primerNombre:string;
-  segundoNombre:string;
-  identificacion:string;
-  correo:string;
+  primerApellido: string;
+  segundoApellido: string;
+  primerNombre: string;
+  segundoNombre: string;
+  identificacion: string;
+  correo: string;
   model: NgbDateStruct;
-  date: {year: number, month: number};
-  constructor(private calendar: NgbCalendar,private userService:UserService ) { 
-
-
-  
+  date: { year: number, month: number };
+  constructor(private calendar: NgbCalendar, private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) {
+    this.usuario = {
+      id: '',
+      primerApellido: '',
+      segundoApellido: '',
+      primerNombre: '',
+      idPais: '',
+      tipoId: '',
+      Identificacion: '',
+      fechaIngreso: '',
+      idArea: '',
+      fechaRegistro: '',
+      estado: '',
+    }
   }
   ngOnInit(): void {
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    if (this.id) {
+      this.getById(this.id);
+    }
+  }
+
+  getById(id) {
+    this.userService.getUserById(id).subscribe(res => {
+      console.log(res);
+      this.usuario = res;
+    });
 
   }
 
-  beforeSend(data){
-    let result = false;
-    if(data.fechaIngreso  == undefined){
-      result = true;
+  getTimesLocal(fechaParametro) {
+    let mes = fechaParametro.getMonth();
+    let dia = fechaParametro.getDate();
+    let fecha = fechaParametro.toLocaleString().slice(6, -10);
+    if (dia <= 9) {
+      dia = "0" + dia;
     }
-
-    if(data.identificacion  == ""){
-      result = true;
+    if (mes <= 9) {
+      mes = "0" + mes;
     }
-  if(data.pais  == ""){
-      result = true;
-    }
-
-    if(data.primerApellido  == ""){
-      result = true;
-    }
-    if(data.segundoApellido  == ""){
-     result = true;
-    }
-    if(data.segundoNombre  == ""){
-      result = true;
-    }
-    if(data.tipoId  == ""){
-     result = true;
-    }
-    return result;
-
+    return fecha + "-" + mes + "-" + dia;
+  }
+  buildEmail(primerNombre: any, primerApellido: any, idPais: any) {
+    let dominio = (idPais == 0) ? col : usa;
+    return primerNombre + "" + primerApellido + "" + dominio;
   }
 
 
-  onClickSubmit(data):void{
 
 
+  onClickSubmit(data): void {
     console.log(data);
-    this.show =false;
+    this.show = false;
     this.spining = true;
-    let  result =  this.beforeSend(data);
-    if(result == true){
-      this.show = true;
-     }
-    if(!result){
-       
-      let fecha =   data.fechaIngreso.getDate();
-       console.log(fecha);
-      
-      this.userService.newUser(data).subscribe(res =>{
-          console.log(res);
-      });
-      
-       //this.newUser.emit(data);
-      //console.log(result);  
-    }
-     //this.spining = false;
-      
+    // this.router.navigate(['/']);
+    let fechaRegistroCalendar = this.getTimesLocal(data.fechaIngreso);
+    data.fechaIngreso = fechaRegistroCalendar;
+    data.estado = 1;
+    let fechaRegistro = new Date();
+    let fechaActual = this.getTimesLocal(fechaRegistro);
+    data.fechaRegistro = fechaActual;
+    let email = this.buildEmail(data.primerNombre, data.primerApellido, data.idPais);
+    data.correo = email;
+    // console.log(fechaRegistro);
+    this.userService.newUser(data).subscribe(res => {
+      console.log(res);
+      // this.router.navigate(['/']);
+    });
+
   }
-
-
-
-
-
 
 }

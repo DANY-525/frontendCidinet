@@ -15,6 +15,8 @@ const httpOptions = {
 })
 export class UserService {
 
+  
+
   todosUrl:string = 'http://localhost:3000/user';
   //todosLimit = '?_limit=5';
 
@@ -36,9 +38,15 @@ export class UserService {
 
   }
 
+  delete(id) {
+    return this.http.delete<any>(this.todosUrl+'/'+id);
+  }
 
 
+  getUserById(id) {
+    return this.http.get<any>(this.todosUrl+'/'+id);
 
+  }
 
 
 

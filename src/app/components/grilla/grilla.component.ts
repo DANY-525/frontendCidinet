@@ -30,11 +30,12 @@ const NAMES: string[] = [
   templateUrl: './grilla.component.html',
   styleUrls: ['./grilla.component.css']
 })
-export class GrillaComponent implements AfterViewInit {
+export class GrillaComponent  {
   displayedColumns: string[] = ['id',
     'primerNombre',
     'segundoNombre',
-    'primerApellido'];
+    'primerApellido',
+    'acciones'];
   dataSource: MatTableDataSource<Usuario>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -53,14 +54,21 @@ export class GrillaComponent implements AfterViewInit {
     this.userService.getUsers().subscribe(req => {
       
     this.dataSource = new MatTableDataSource(req);
-
+    
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
 
    });
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+  deleteById(id){
+
+    this.userService.delete(id).subscribe(res =>{
+
+      this.getUsers();
+
+    });
+
   }
 
   applyFilter(event: Event) {
@@ -72,16 +80,3 @@ export class GrillaComponent implements AfterViewInit {
     }
   }
 }
-
-/** Builds and returns a new User. */
-/*function createNewUser(id: number): UserData {
-  const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
-}*/
