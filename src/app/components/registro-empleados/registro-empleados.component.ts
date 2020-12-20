@@ -1,8 +1,8 @@
 import { Component, OnInit,EventEmitter,Output } from '@angular/core';
 import {NgbCalendar, NgbDate, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import { from } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
 
-import {User} from '../../models/Usuario';
 
 
 
@@ -35,6 +35,8 @@ let spining:boolean;
 })
 export class RegistroEmpleadosComponent implements OnInit {
   @Output() newUser: EventEmitter<any> = new EventEmitter();
+
+  
 
  show =false;
  spining=false;
@@ -72,7 +74,7 @@ export class RegistroEmpleadosComponent implements OnInit {
   correo:string;
   model: NgbDateStruct;
   date: {year: number, month: number};
-  constructor(private calendar: NgbCalendar) { 
+  constructor(private calendar: NgbCalendar,private userService:UserService ) { 
 
 
   
@@ -84,44 +86,28 @@ export class RegistroEmpleadosComponent implements OnInit {
   beforeSend(data){
     let result = false;
     if(data.fechaIngreso  == undefined){
-
       result = true;
-
     }
 
     if(data.identificacion  == ""){
-
       result = true;
-
     }
-
-    if(data.pais  == ""){
-
+  if(data.pais  == ""){
       result = true;
-
     }
 
     if(data.primerApellido  == ""){
-
       result = true;
-
     }
     if(data.segundoApellido  == ""){
-
-      result = true;
-
+     result = true;
     }
     if(data.segundoNombre  == ""){
-
       result = true;
-
     }
     if(data.tipoId  == ""){
-
-      result = true;
-
+     result = true;
     }
-    
     return result;
 
   }
@@ -129,32 +115,28 @@ export class RegistroEmpleadosComponent implements OnInit {
 
   onClickSubmit(data):void{
 
+
+    console.log(data);
     this.show =false;
-
     this.spining = true;
-
-     let  result =  this.beforeSend(data);
-
-
-     if(result == true){
-
+    let  result =  this.beforeSend(data);
+    if(result == true){
       this.show = true;
-
      }
-
-     
-
-     if(!result){
-
-
-      let usuario  =  new User(data);
-      this.newUser.emit(usuario);
+    if(!result){
+       
+      let fecha =   data.fechaIngreso.getDate();
+       console.log(fecha);
       
+      this.userService.newUser(data).subscribe(res =>{
+          console.log(res);
+      });
+      
+       //this.newUser.emit(data);
+      //console.log(result);  
     }
      //this.spining = false;
       
-
-    
   }
 
 

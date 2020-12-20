@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient,HttpHeaders} from '@angular/common/http';
-import{Todo} from '../../app/models/Todo';
+import{Usuario} from '../../app/models/Usuario';
 import{Observable} from 'rxjs';
 
 const httpOptions = {
@@ -10,57 +10,32 @@ const httpOptions = {
   })
 
 }
-
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  todosUrl:string = 'https://jsonplaceholder.typicode.com/todos';
-  todosLimit = '?_limit=5';
+  todosUrl:string = 'http://localhost:3000/user';
+  //todosLimit = '?_limit=5';
 
   constructor(private http:HttpClient) { }
 
+  newUser(usuario:Usuario):Observable<Usuario>{
 
+    console.log("pase por service")
 
-
-  addTodo(todo:Todo):Observable<Todo>{
-
-    return this.http.post<Todo>(this.todosUrl,todo,httpOptions);
-
-  }
-
-
-
-  /*getTodos():Observable<Todo[]>{
-      return this.http.get<Todo[]>(`${this.todosUrl}${this.todosLimit}`); 
-  }*/
-
-  
-  
-  /*//deleteTodo
-  deleteTodo(todo:Todo):Observable<Todo>{
-    //remove from UI
-    const url =`${this.todosUrl}/${todo.id}`;
-    return this.http.delete<Todo>(url,httpOptions);
-
+    //console.log("hola");
+  return this.http.post<Usuario>(this.todosUrl,usuario,httpOptions);
 
   }
 
 
+  getUsers():Observable<any> {
 
-  //Toggle competed status
+    return this.http.get<any>(this.todosUrl);
 
-  toggleCompleted(todo:Todo):Observable<any>{
-         const url =`${this.todosUrl}/${todo.id}`;
-
-         return this.http.put(url,todo,httpOptions);
-    
   }
 
-*/
 
 
 

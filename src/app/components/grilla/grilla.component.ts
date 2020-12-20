@@ -1,7 +1,8 @@
-import { Component, OnInit,AfterViewInit,ViewChild } from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { UserService } from 'src/app/services/user.service';
 
 export interface UserData {
   id: string;
@@ -29,21 +30,29 @@ const NAMES: string[] = [
   styleUrls: ['./grilla.component.css']
 })
 export class GrillaComponent implements AfterViewInit {
-  displayedColumns: string[] = ['id', 
-                                'name', 
-                                'progress', 
-                                'color'];
+  displayedColumns: string[] = ['id',
+    'name',
+    'progress',
+    'color'];
   dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {
+  constructor(private userService: UserService) {
+
+    this.getUsers();
     // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+    const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(users);
+  }
+
+  getUsers() {
+    this.userService.getUsers().subscribe(req => {
+      console.log(req);
+   });
   }
 
   ngAfterViewInit() {
@@ -64,7 +73,7 @@ export class GrillaComponent implements AfterViewInit {
 /** Builds and returns a new User. */
 function createNewUser(id: number): UserData {
   const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
+    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
 
   return {
     id: id.toString(),
