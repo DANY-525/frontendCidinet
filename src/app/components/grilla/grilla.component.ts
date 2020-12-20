@@ -30,16 +30,9 @@ const NAMES: string[] = [
 })
 export class GrillaComponent implements AfterViewInit {
   displayedColumns: string[] = ['id', 
-                                'primerApellido', 
-                                'segundoApellido', 
-                                'primerNombre',
-                                'segundoNombre',
-                                'numeroIdentificacion',
-                                'correo',
-                                'fechaIngreso',
-                                'estado',
-                                'idPais',
-                                'tipoIdentificacion'];
+                                'name', 
+                                'progress', 
+                                'color'];
   dataSource: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

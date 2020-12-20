@@ -2,6 +2,8 @@ import { Component, OnInit,EventEmitter,Output } from '@angular/core';
 import {NgbCalendar, NgbDate, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import { from } from 'rxjs';
 
+import {User} from '../../models/Usuario';
+
 
 
 interface Pais {
@@ -32,6 +34,7 @@ let spining:boolean;
   styleUrls: ['./registro-empleados.component.css']
 })
 export class RegistroEmpleadosComponent implements OnInit {
+  @Output() newUser: EventEmitter<any> = new EventEmitter();
 
  show =false;
  spining=false;
@@ -139,8 +142,16 @@ export class RegistroEmpleadosComponent implements OnInit {
 
      }
 
+     
 
-     this.spining = false;
+     if(!result){
+
+
+      let usuario  =  new User(data);
+      this.newUser.emit(usuario);
+      
+    }
+     //this.spining = false;
       
 
     
