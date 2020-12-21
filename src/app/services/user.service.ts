@@ -27,9 +27,15 @@ export class UserService {
     console.log("pase por service")
 
     //console.log("hola");
-  return this.http.post<Usuario>(this.todosUrl,usuario,httpOptions);
+    return this.http.post<Usuario>(this.todosUrl,usuario,httpOptions);
 
   }
+
+  updateUser(data: any):Observable<any> {
+   //  console.log(data);
+     return this.http.put<any>(this.todosUrl,data,httpOptions);
+  }
+
 
 
   getUsers():Observable<any> {

@@ -37,63 +37,71 @@ export class GrillaComponent {
   }
 
   deleteById(id) {
+    var answer = window.confirm("Delete data?");
+    if (answer) {
       this.userService.delete(id).subscribe(res => {
-      this.getUsers();
-   });
+        this.getUsers();
+      });
+    }
+    else {
+      //some code
+    }
+
+  
   }
 
 
 
-  consultaArea(id){
-   let  retorno =""
-    if(id==0){
-      retorno ="Administracion";
+  consultaArea(id) {
+    let retorno = ""
+    if (id == 0) {
+      retorno = "Administracion";
     }
-    if(id==1){
-      retorno ="Financiera";
+    if (id == 1) {
+      retorno = "Financiera";
     }
-    if(id==2){
-      retorno ="Compras";
-    }
-
-    if(id==3){
-      retorno ="Infraestructura";
+    if (id == 2) {
+      retorno = "Compras";
     }
 
-    if(id==4){
-      retorno ="Operacion";
+    if (id == 3) {
+      retorno = "Infraestructura";
+    }
+
+    if (id == 4) {
+      retorno = "Operacion";
     }
     return retorno;
   }
 
-  consultaPais(id){
-    let retorno ="";
-    if(id==0){
-      retorno ="colombia";
+  consultaPais(id) {
+    let retorno = "";
+    if (id == 0) {
+      retorno = "colombia";
     }
-    if(id==1){
-      retorno ="usa";
+    if (id == 1) {
+      retorno = "usa";
 
     }
     return retorno;
   }
 
 
-  consultaTipoId(id){
-    let retorno ="";
-    if(id==0){
-      retorno ="cedula";
+  consultaTipoId(id) {
+    let retorno = "";
+    if (id == 0) {
+      retorno = "cedula";
     }
-    if(id==1){
-      retorno ="extrangeria";
+    if (id == 1) {
+      retorno = "extrangeria";
 
     }
-    if(id==2){
-      retorno ="pasaporte";
+    if (id == 2) {
+      retorno = "pasaporte";
 
     }
-    if(id==3){
-      retorno ="permiso especial";
+    if (id == 3) {
+      retorno = "permiso especial";
 
     }
     return retorno;
