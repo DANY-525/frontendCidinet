@@ -18,7 +18,9 @@ export class GrillaComponent {
     'correo',
     'idArea',
     'idPais',
+    'tipoId',
     'fechaIngreso',
+    'fechaRegistro',
     'acciones'];
   dataSource: MatTableDataSource<Usuario>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -75,6 +77,28 @@ export class GrillaComponent {
     }
     return retorno;
   }
+
+
+  consultaTipoId(id){
+    let retorno ="";
+    if(id==0){
+      retorno ="cedula";
+    }
+    if(id==1){
+      retorno ="extrangeria";
+
+    }
+    if(id==2){
+      retorno ="pasaporte";
+
+    }
+    if(id==3){
+      retorno ="permiso especial";
+
+    }
+    return retorno;
+  }
+
 
 
 

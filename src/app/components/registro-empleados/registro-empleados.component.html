@@ -10,14 +10,14 @@
 
     <mat-form-field appearance="legacy">
       <mat-label>Segundo Apellido</mat-label>
-      <input matInput placeholder="segundoApellido" name="segundoApellido" ngModel>
+      <input matInput placeholder="segundoApellido" name="segundoApellido" [(ngModel)]="usuario.segundoApellido">
       <mat-icon matSuffix>perm_identity</mat-icon>
       <!-- <mat-hint>Hint</mat-hint>-->
     </mat-form-field>
 
     <mat-form-field appearance="legacy">
       <mat-label>primerNombre</mat-label>
-      <input matInput placeholder="primerNombre" name="primerNombre" ngModel>
+      <input matInput placeholder="primerNombre" name="primerNombre" [(ngModel)]="usuario.primerNombre">
       <mat-icon matSuffix>perm_identity</mat-icon>
       <!-- <mat-hint>Hint</mat-hint>-->
     </mat-form-field>
@@ -25,7 +25,7 @@
 
     <mat-form-field appearance="legacy">
       <mat-label>Otros Nombre</mat-label>
-      <input matInput placeholder="Segundo Nombre" name="segundoNombre" ngModel>
+      <input matInput placeholder="Segundo Nombre" name="segundoNombre" [(ngModel)]="usuario.segundoNombre">
       <mat-icon matSuffix>perm_identity</mat-icon>
       <mat-hint>Pais</mat-hint>
     </mat-form-field>
@@ -53,14 +53,14 @@
 
     <mat-form-field appearance="legacy">
       <mat-label>identificacion</mat-label>
-      <input matInput placeholder="identificacion" name="Identificacion" ngModel>
+      <input matInput placeholder="identificacion" name="Identificacion" [(ngModel)]="usuario.Identificacion">
       <mat-icon matSuffix>perm_media</mat-icon>
       <!-- <mat-hint>Hint</mat-hint>-->
     </mat-form-field>
 
     <mat-form-field color="accent" appearance="fill">
       <mat-label>fecha Ingreso</mat-label>
-      <input matInput [matDatepicker]="picker1" name="fechaIngreso" ngModel>
+      <input matInput [matDatepicker]="picker1" name="fechaIngreso" [(ngModel)]="usuario.fechaIngreso">
       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>

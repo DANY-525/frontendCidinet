@@ -11,32 +11,30 @@
       <td mat-cell *matCellDef="let row"> {{row.id}} </td>
     </ng-container>
 
-    <!-- Progress Column -->
+ 
     <ng-container matColumnDef="primerNombre">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
       <td mat-cell *matCellDef="let row"> {{row.primerNombre}} </td>
     </ng-container>
 
-    <!-- Name Column -->
     <ng-container matColumnDef="segundoNombre">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Segundo Nombre</th>
       <td mat-cell *matCellDef="let row"> {{row.segundoNombre}} </td>
     </ng-container>
 
-    <!-- Color Column -->
+   
     <ng-container matColumnDef="primerApellido">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellido </th>
       <td mat-cell *matCellDef="let row"> {{row.primerApellido}} </td>
     </ng-container>
 
-    <!-- Color Column -->
     <ng-container matColumnDef="Identificacion">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> identificacion </th>
       <td mat-cell *matCellDef="let row"> {{row.Identificacion}} </td>
     </ng-container>
 
 
-    <!-- Color Column -->
+  
     <ng-container matColumnDef="correo">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> correo </th>
       <td mat-cell *matCellDef="let row"> {{row.correo}} </td>
@@ -48,18 +46,25 @@
       <td mat-cell *matCellDef="let row"> {{consultaArea(row.idArea)}} </td>
     </ng-container>
 
-    <!-- Color Pais -->
+
     <ng-container matColumnDef="idPais">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> pais </th>
       <td mat-cell *matCellDef="let row"> {{consultaPais(row.idPais)}} </td>
     </ng-container>
+    <ng-container matColumnDef="tipoId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> T I </th>
+      <td mat-cell *matCellDef="let row"> {{consultaTipoId(row.tipoId)}} </td>
+    </ng-container>
 
 
 
-    <!-- fechaIngreso Column -->
     <ng-container matColumnDef="fechaIngreso">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> fechaIngreso </th>
       <td mat-cell *matCellDef="let row"> {{row.fechaIngreso}} </td>
+    </ng-container>
+    <ng-container matColumnDef="fechaRegistro">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> fecha Registro </th>
+      <td mat-cell *matCellDef="let row"> {{row.fechaRegistro}} </td>
     </ng-container>
 
     <ng-container matColumnDef="acciones">

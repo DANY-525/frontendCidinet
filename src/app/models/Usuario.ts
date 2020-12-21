@@ -14,5 +14,6 @@ export class Usuario {
     correo:string;
     estado:number;
     
+    
 
 }
