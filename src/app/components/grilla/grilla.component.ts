@@ -30,7 +30,7 @@ export class GrillaComponent {
   }
   getUsers() {
     this.userService.getUsers().subscribe(req => {
-      console.log(req)
+      //console.log(req)
       this.dataSource = new MatTableDataSource(req);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -44,16 +44,13 @@ export class GrillaComponent {
         this.getUsers();
       });
     }
-    else {
-      //some code
-    }
-
+   
   
   }
 
 
 
-  consultaArea(id) {
+  consultaArea(id:number) {
     let retorno = ""
     if (id == 0) {
       retorno = "Administracion";
@@ -75,7 +72,7 @@ export class GrillaComponent {
     return retorno;
   }
 
-  consultaPais(id) {
+  consultaPais(id:number) {
     let retorno = "";
     if (id == 0) {
       retorno = "Colombia";
@@ -87,8 +84,7 @@ export class GrillaComponent {
     return retorno;
   }
 
-
-  consultaTipoId(id) {
+  consultaTipoId(id:number) {
     let retorno = "";
     if (id == 0) {
       retorno = "Cedula";
@@ -108,8 +104,14 @@ export class GrillaComponent {
     return retorno;
   }
 
+  formatearFecha(fechaformater:string) {
+
+    console.log(fechaformater);
+
+    return fechaformater;
 
 
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
