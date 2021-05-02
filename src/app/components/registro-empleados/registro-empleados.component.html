@@ -1,32 +1,28 @@
 <div class="formaulario">
   <form #userlogin="ngForm" (ngSubmit)="onClickSubmit(userlogin.value)">
-
-    
     <mat-form-field appearance="legacy">
       <mat-label>Primer Apellido</mat-label>
-      <input matInput placeholder="Apellido" name="primerApellido" [(ngModel)]="usuario.primerApellido">
+      <input matInput placeholder="Apellido" name="primerApellido" ngModel>
       <mat-icon matSuffix>perm_identity</mat-icon>
       <!--<mat-hint>Hint</mat-hint>-->
     </mat-form-field>
 
     <mat-form-field appearance="legacy">
       <mat-label>Segundo Apellido</mat-label>
-      <input matInput placeholder="segundoApellido" name="segundoApellido" [(ngModel)]="usuario.segundoApellido">
+      <input matInput placeholder="segundoApellido" name="segundoApellido" ngModel>
       <mat-icon matSuffix>perm_identity</mat-icon>
       <!-- <mat-hint>Hint</mat-hint>-->
     </mat-form-field>
 
     <mat-form-field appearance="legacy">
       <mat-label>primerNombre</mat-label>
-      <input matInput placeholder="primerNombre" name="primerNombre" [(ngModel)]="usuario.primerNombre">
+      <input matInput placeholder="primerNombre" name="primerNombre" ngModel>
       <mat-icon matSuffix>perm_identity</mat-icon>
       <!-- <mat-hint>Hint</mat-hint>-->
     </mat-form-field>
-
-
     <mat-form-field appearance="legacy">
       <mat-label>Otros Nombre</mat-label>
-      <input matInput placeholder="Segundo Nombre" name="segundoNombre" [(ngModel)]="usuario.segundoNombre">
+      <input matInput placeholder="Segundo Nombre" name="segundoNombre" ngModel>
       <mat-icon matSuffix>perm_identity</mat-icon>
       <mat-hint>Pais</mat-hint>
     </mat-form-field>

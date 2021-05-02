@@ -3,17 +3,12 @@ import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-
 import { RegistroEmpleadosComponent } from './components/registro-empleados/registro-empleados.component';
 import {FormsModule} from '@angular/forms';
 //Angular Material Components
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { MatNativeDateModule } from '@angular/material/core';
-
-
 import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -43,9 +38,6 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { GrillaComponent } from './components/grilla/grilla.component';
-
-
-
 @NgModule({
   declarations: [
     AppComponent,

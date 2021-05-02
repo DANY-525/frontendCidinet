@@ -49,8 +49,6 @@ export class GrillaComponent {
   
   }
 
-
-
   consultaArea(id:number) {
     let retorno = ""
     if (id == 0) {
@@ -104,16 +102,10 @@ export class GrillaComponent {
     }
     return retorno;
   }
-
   formatearFecha(fechaformater:string) {
-
     fechaformater = moment(fechaformater).format('DD/MM/YYYY HH:mm:ss')
-
     return fechaformater;
-
-
   }
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
