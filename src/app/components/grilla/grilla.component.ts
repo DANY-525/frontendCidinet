@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Usuario } from 'src/app/models/Usuario';
 import { UserService } from 'src/app/services/user.service';
+import * as moment from 'moment';
 @Component({
   selector: 'app-grilla',
   templateUrl: './grilla.component.html',
@@ -106,7 +107,7 @@ export class GrillaComponent {
 
   formatearFecha(fechaformater:string) {
 
-    console.log(fechaformater);
+    fechaformater = moment(fechaformater).format('DD/MM/YYYY HH:mm:ss')
 
     return fechaformater;
 
