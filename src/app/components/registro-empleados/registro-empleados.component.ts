@@ -62,7 +62,7 @@ export class RegistroEmpleadosComponent implements OnInit {
   primerNombre: string;
   segundoNombre: string;
   idPais: string;
-  identificacion: string;
+  idNumber: string;
   correo: string;
   fechaIngreso:string;
   model: NgbDateStruct;
@@ -76,7 +76,7 @@ export class RegistroEmpleadosComponent implements OnInit {
       segundoNombre:'',
       idPais: '',
       tipoId: '',
-      identificacion: '',
+      idNumber: '',
       fechaIngreso: '',
       idArea: '',
       fechaRegistro: '',
@@ -137,7 +137,7 @@ export class RegistroEmpleadosComponent implements OnInit {
      
                      //   console.log(this.usuario.fechaIngreso);
 
-                     console.log(data.fechaIngreso);
+                     //console.log(data.fechaIngreso);
      
       data.fechaIngreso = data.fechaIngreso;
       let fechaRegistro = new Date();
@@ -149,6 +149,7 @@ export class RegistroEmpleadosComponent implements OnInit {
       data.correo = email;
 
      // console.log(data);
+      console.log(data);
       this.userService.newUser(data).subscribe(res => {
         this.spining = false;
         this.show = false;

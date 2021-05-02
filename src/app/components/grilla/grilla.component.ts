@@ -78,10 +78,10 @@ export class GrillaComponent {
   consultaPais(id) {
     let retorno = "";
     if (id == 0) {
-      retorno = "colombia";
+      retorno = "Colombia";
     }
     if (id == 1) {
-      retorno = "usa";
+      retorno = "Usa";
 
     }
     return retorno;
@@ -91,18 +91,18 @@ export class GrillaComponent {
   consultaTipoId(id) {
     let retorno = "";
     if (id == 0) {
-      retorno = "cedula";
+      retorno = "Cedula";
     }
     if (id == 1) {
-      retorno = "extrangeria";
+      retorno = "Extrangeria";
 
     }
     if (id == 2) {
-      retorno = "pasaporte";
+      retorno = "Pasaporte";
 
     }
     if (id == 3) {
-      retorno = "permiso especial";
+      retorno = "Permiso especial";
 
     }
     return retorno;
