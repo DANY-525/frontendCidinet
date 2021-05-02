@@ -30,7 +30,7 @@
 
     <ng-container matColumnDef="Identificacion">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> identificacion </th>
-      <td mat-cell *matCellDef="let row"> {{row.Identificacion}} </td>
+      <td mat-cell *matCellDef="let row"> {{row.identificacion}} </td>
     </ng-container>
 
 
@@ -43,13 +43,13 @@
     <!-- Color Area -->
     <ng-container matColumnDef="idArea">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> area </th>
-      <td mat-cell *matCellDef="let row"> {{consultaArea(row.idArea)}} </td>
+      <td mat-cell *matCellDef="let row"> {{consultaArea(row.idarea)}} </td>
     </ng-container>
 
 
     <ng-container matColumnDef="idPais">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> pais </th>
-      <td mat-cell *matCellDef="let row"> {{consultaPais(row.idPais)}} </td>
+      <td mat-cell *matCellDef="let row"> {{consultaPais(row.idpais)}} </td>
     </ng-container>
     <ng-container matColumnDef="tipoId">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> T I </th>

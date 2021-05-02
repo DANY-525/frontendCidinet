@@ -62,8 +62,9 @@ export class RegistroEmpleadosComponent implements OnInit {
   primerNombre: string;
   segundoNombre: string;
   idPais: string;
-  Identificacion: string;
+  identificacion: string;
   correo: string;
+  fechaIngreso:string;
   model: NgbDateStruct;
   date: { year: number, month: number };
   constructor(private calendar: NgbCalendar, private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) {
@@ -72,9 +73,10 @@ export class RegistroEmpleadosComponent implements OnInit {
       primerApellido: '',
       segundoApellido: '',
       primerNombre: '',
+      segundoNombre:'',
       idPais: '',
       tipoId: '',
-      Identificacion: '',
+      identificacion: '',
       fechaIngreso: '',
       idArea: '',
       fechaRegistro: '',
@@ -92,7 +94,7 @@ export class RegistroEmpleadosComponent implements OnInit {
 
   getById(id) {
     this.userService.getUserById(id).subscribe(res => {
-      console.log(res);
+      //console.log(res);
       this.usuario = res;
     });
 
@@ -131,14 +133,22 @@ export class RegistroEmpleadosComponent implements OnInit {
     // this.router.navigate(['/']);
     camposMalos = this.validateForm(data);
     if (camposMalos == "") {
-      let fechaRegistroCalendar = this.getTimesLocal(data.fechaIngreso);
-      data.fechaIngreso = fechaRegistroCalendar;
+      //let fechaRegistroCalendar = this.getTimesLocal(data.fechaIngreso);
+     
+                     //   console.log(this.usuario.fechaIngreso);
+
+                     console.log(data.fechaIngreso);
+     
+      data.fechaIngreso = data.fechaIngreso;
       let fechaRegistro = new Date();
-      let fechaActual = this.getTimesLocal(fechaRegistro);
-      data.fechaRegistro = fechaActual;
+      console.log(fechaRegistro);
+      // let fechaActual = this.getTimesLocal(fechaRegistro);
+      data.fechaRegistro = fechaRegistro;
       data.estado = 1;
       let email = this.buildEmail(data.primerNombre, data.primerApellido, data.idPais);
       data.correo = email;
+
+     // console.log(data);
       this.userService.newUser(data).subscribe(res => {
         this.spining = false;
         this.show = false;
