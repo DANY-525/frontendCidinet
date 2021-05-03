@@ -37,9 +37,9 @@ export class UserService {
 
   }
 
-  updateUser(data: any):Observable<any> {
+  updateUser(data: any,id):Observable<any> {
    //  console.log(data);
-     return this.http.put<any>(this.todosUrl,data,httpOptions);
+     return this.http.put<any>(this.todosUrl+`/${id}`,data,httpOptions);
   }
 
 

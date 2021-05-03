@@ -32,6 +32,7 @@ export class GrillaComponent {
   getUsers() {
     this.userService.getUsers().subscribe(req => {
       //console.log(req)
+      localStorage.setItem('usuarios',JSON.stringify(req));
       this.dataSource = new MatTableDataSource(req);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

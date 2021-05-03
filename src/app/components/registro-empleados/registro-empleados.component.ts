@@ -99,19 +99,6 @@ export class RegistroEmpleadosComponent implements OnInit {
     });
 
   }
-
-  getTimesLocal(fechaParametro) {
-    let mes = fechaParametro.getMonth();
-    let dia = fechaParametro.getDate();
-    let fecha = fechaParametro.toLocaleString().slice(6, -10);
-    if (dia <= 9) {
-      dia = "0" + dia;
-    }
-    if (mes <= 9) {
-      mes = "0" + mes;
-    }
-    return fecha + "-" + mes + "-" + dia;
-  }
   buildEmail(primerNombre: any, primerApellido: any, idPais: any) {
     let dominio = (idPais == 0) ? col : usa;
     return primerNombre + "" + primerApellido + "" + dominio;
@@ -133,11 +120,7 @@ export class RegistroEmpleadosComponent implements OnInit {
     // this.router.navigate(['/']);
     camposMalos = this.validateForm(data);
     if (camposMalos == "") {
-      //let fechaRegistroCalendar = this.getTimesLocal(data.fechaIngreso);
-     
-                     //   console.log(this.usuario.fechaIngreso);
-
-                     //console.log(data.fechaIngreso);
+   
      
       data.fechaIngreso = data.fechaIngreso;
       let fechaRegistro = new Date();

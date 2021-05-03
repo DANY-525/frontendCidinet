@@ -4,7 +4,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegistroEmpleadosComponent } from './components/registro-empleados/registro-empleados.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { EditEmpleadosComponent } from './components/edit-empleados/edit-empleados.component';
 //Angular Material Components
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -38,14 +39,20 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { GrillaComponent } from './components/grilla/grilla.component';
+import { HeaderComponent } from './layouth/header/header.component';
+
 @NgModule({
   declarations: [
     AppComponent,
  
     GrillaComponent,
-    RegistroEmpleadosComponent
+    RegistroEmpleadosComponent,
+    EditEmpleadosComponent,
+    HeaderComponent,
+
   ],
   imports: [
+    ReactiveFormsModule,
     MatNativeDateModule,
     BrowserModule,
     AppRoutingModule,
