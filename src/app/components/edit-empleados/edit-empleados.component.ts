@@ -1,6 +1,5 @@
 import { Component, ComponentFactoryResolver, Input, OnInit } from '@angular/core';
 import { NgbCalendar, NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
@@ -86,31 +85,13 @@ export class EditEmpleadosComponent implements OnInit {
      this.profileForm.controls["correo"].setValue(usuario.correo.toString());
      this.profileForm.controls["AreaId"].setValue(usuario.idArea.toString());
      this.profileForm.controls["fechaRegistro"].setValue(usuario.fechaRegistro.toString());
-
-     console.log(usuario);
   }
 
   onClickSubmit(user:any){
-
-
-  
     this.userService.updateUser(user,this.id).subscribe( res =>{
-      
         console.log(res);
-
       }
-
     );
-    
-    
-
-
-
   }
-
-  
-
-
-
 
 }
