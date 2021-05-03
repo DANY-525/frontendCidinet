@@ -8,7 +8,6 @@ interface Pais {
   value: string;
   nombre: string;
 }
-
 interface Identificacion {
   value: string;
   nombre: string;
@@ -17,9 +16,6 @@ interface Area {
   value: string;
   nombre: string;
 }
-
-
-
 @Component({
   selector: 'app-edit-empleados',
   templateUrl: './edit-empleados.component.html',
@@ -71,14 +67,12 @@ export class EditEmpleadosComponent implements OnInit {
     idPais: new FormControl(""),
     tipoId: new FormControl(""),
     idNumber: new FormControl(""),
+    correo: new FormControl(""),
     fechaIngreso: new FormControl(""),
+    fechaRegistro: new FormControl(""),
     AreaId: new FormControl(""),
   });
-
-
   dato:any
-
-  
   ngOnInit(): void {
 
      this.dato= localStorage.getItem('usuarios');
@@ -89,20 +83,26 @@ export class EditEmpleadosComponent implements OnInit {
      this.profileForm.controls["idPais"].setValue(usuario.idpais.toString());
      this.profileForm.controls["tipoId"].setValue(usuario.tipoId.toString());
      this.profileForm.controls["fechaIngreso"].setValue(usuario.fechaIngreso.toString());
+     this.profileForm.controls["correo"].setValue(usuario.correo.toString());
      this.profileForm.controls["AreaId"].setValue(usuario.idArea.toString());
+     this.profileForm.controls["fechaRegistro"].setValue(usuario.fechaRegistro.toString());
 
      console.log(usuario);
   }
 
   onClickSubmit(user:any){
 
+
+  
     this.userService.updateUser(user,this.id).subscribe( res =>{
       
         console.log(res);
 
       }
 
-    );  
+    );
+    
+    
 
 
 

@@ -46,7 +46,7 @@ export class UserService {
 
 
   delete(id) {
-    return this.http.delete<any>(this.todosUrl+'/'+id);
+    return this.http.delete<any>(this.todosUrl+`/${id}`,httpOptions);
   }
 
 

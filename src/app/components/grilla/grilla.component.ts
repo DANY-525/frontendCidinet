@@ -40,10 +40,16 @@ export class GrillaComponent {
   }
 
   deleteById(id) {
+
+    console.log(id+"pas");
+
+
     var answer = window.confirm("Delete data?");
     if (answer) {
       this.userService.delete(id).subscribe(res => {
-        this.getUsers();
+
+        console.log(res)
+       this.getUsers();
       });
     }
    
