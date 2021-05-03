@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, Input, OnInit } from '@angular/core';
 import { NgbCalendar, NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 interface Pais {
@@ -22,23 +22,23 @@ interface Area {
 })
 export class EditEmpleadosComponent implements OnInit {
   id: any;
-  primerApellido: string ="daniel";
+  primerApellido: string = "daniel";
   segundoApellido: string;
   primerNombre: string;
   segundoNombre: string;
   idPais: string;
   idNumber: string;
   correo: string;
-  fechaIngreso:string;
+  fechaIngreso: string;
   model: NgbDateStruct;
   date: { year: number, month: number };
   show = false;
   spining = false;
-  datos:any;
-  constructor(private route: ActivatedRoute,private userService: UserService) {
+  datos: any;
+  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) {
 
   };
- 
+
   areas: Area[] = [
     { value: '0', nombre: 'Administracion' },
     { value: '1', nombre: 'Financiera' },
@@ -71,26 +71,26 @@ export class EditEmpleadosComponent implements OnInit {
     fechaRegistro: new FormControl(""),
     AreaId: new FormControl(""),
   });
-  dato:any
+  dato: any
   ngOnInit(): void {
 
-     this.dato= localStorage.getItem('usuarios');
-     let usuarios = JSON.parse(this.dato);
-     this.id = this.route.snapshot.paramMap.get('id')
-     const usuario = usuarios.filter(usuario => usuario.id  ==  this.id)[0];
-     this.profileForm.patchValue(usuario);
-     this.profileForm.controls["idPais"].setValue(usuario.idpais.toString());
-     this.profileForm.controls["tipoId"].setValue(usuario.tipoId.toString());
-     this.profileForm.controls["fechaIngreso"].setValue(usuario.fechaIngreso.toString());
-     this.profileForm.controls["correo"].setValue(usuario.correo.toString());
-     this.profileForm.controls["AreaId"].setValue(usuario.idArea.toString());
-     this.profileForm.controls["fechaRegistro"].setValue(usuario.fechaRegistro.toString());
+    this.dato = localStorage.getItem('usuarios');
+    let usuarios = JSON.parse(this.dato);
+    this.id = this.route.snapshot.paramMap.get('id')
+    const usuario = usuarios.filter(usuario => usuario.id == this.id)[0];
+    this.profileForm.patchValue(usuario);
+    this.profileForm.controls["idPais"].setValue(usuario.idpais.toString());
+    this.profileForm.controls["tipoId"].setValue(usuario.tipoId.toString());
+    this.profileForm.controls["fechaIngreso"].setValue(usuario.fechaIngreso.toString());
+    this.profileForm.controls["correo"].setValue(usuario.correo.toString());
+    this.profileForm.controls["AreaId"].setValue(usuario.idArea.toString());
+    this.profileForm.controls["fechaRegistro"].setValue(usuario.fechaRegistro.toString());
   }
 
-  onClickSubmit(user:any){
-    this.userService.updateUser(user,this.id).subscribe( res =>{
-        console.log(res);
-      }
+  onClickSubmit(user: any) {
+    this.userService.updateUser(user, this.id).subscribe(res => {
+      this.router.navigate(['/']);
+    }
     );
   }
 
